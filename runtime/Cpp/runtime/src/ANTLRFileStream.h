@@ -18,7 +18,11 @@ namespace antlr4 {
 
   public:
     // Assumes a file name encoded in UTF-8 and file content in the same encoding (with or w/o BOM).
+#if __cplusplus >= 201703L
+    ANTLRFileStream(std::string_view fileName);
+#else
     ANTLRFileStream(const std::string &fileName);
+#endif
 
     virtual void loadFromFile(const std::string &fileName);
     virtual std::string getSourceName() const override;

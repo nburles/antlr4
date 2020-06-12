@@ -9,7 +9,11 @@
 
 using namespace antlr4;
 
+#if __cplusplus >= 201703L
+ANTLRFileStream::ANTLRFileStream(std::string_view fileName) {
+#else
 ANTLRFileStream::ANTLRFileStream(const std::string &fileName) {
+#endif
   _fileName = fileName;
   loadFromFile(fileName);
 }
